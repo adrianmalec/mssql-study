@@ -1,0 +1,16 @@
+version: "3"
+services:
+  mssql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql-server-studia
+    restart: always
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${MSSQL_SA_PASSWORD}
+    volumes:
+      - ./backup:/tmp/backups
+      - mssql-data:/var/opt/mssql
+volumes:
+  mssql-data:
